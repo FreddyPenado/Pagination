@@ -23,6 +23,5 @@ $totalarticles = $conection-> query('SELECT FOUND_ROWS() as total ');
 $totalarticles = $totalarticles->fetch()['total'];
 
 $pagenum = ceil($totalarticles / $postPerPage) ;
-echo $pagenum;
  require "index.view.php";
 

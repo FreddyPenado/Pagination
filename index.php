@@ -19,9 +19,12 @@ $articles = $articles->fetchAll();
 if (!$articles){
     header('Location: index.php');
 }
+
+//contabilizar la cantidad de articulos obtenidos en  nuestra base de datos
 $totalarticles = $conection-> query('SELECT FOUND_ROWS() as total ');
 $totalarticles = $totalarticles->fetch()['total'];
 
+//contabilizar las  paginas que obtendremos dependiendo la cantidad de articulos
 $pagenum = ceil($totalarticles / $postPerPage) ;
  require "index.view.php";
 

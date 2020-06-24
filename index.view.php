@@ -13,21 +13,37 @@
     <h1>Articles</h1>
     <section class="articles">
         <ul>
-            <li>1.-Lorem ipsum dolor sit amet, consectetur adipiscing elit!</li>
-            <li>2.-Lorem ipsum dolor sit amet, consectetur adipiscing elit!</li>
-            <li>3.-Lorem ipsum dolor sit amet, consectetur adipiscing elit!</li>
-            <li>4.-Lorem ipsum dolor sit amet, consectetur adipiscing elit!</li>
+            <?php foreach($articles as $article): ?>
+            <li><?php echo $article['id'] . '. -' . $article['articulo'] ?></li>
+            <?php endforeach; ?>
         </ul>
     </section>
 
     <section class="pagination">
         <ul>
-            <li class="disable">&laquo;</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li>&raquo;</a></li>
+            <!--establecer cuando el boton "Anterior" estara deshabilitado"-->
+            <?php if($page == 1): ?>
+                <li class="disable">&laquo;</li>
+            <?php else: ?>
+                <li><a href="?page=<?php echo $page -1 ?>">&laquo;</a></li>
+            <?php  endif; ?>
+
+            <!--establecer el ciclo para mostrar las paginas"-->
+            <?php
+            for ($i=1; $i <= $pagenum; $i++ ){
+                if ($page == $i){
+                    echo "<li class='active'><a href='?page=$i'>$i</a></li>";
+                }else{
+                    echo "<li><a href='?page=$i'>$i</a></li>";
+                }
+            }
+            ?>
+            <!--establecer cuando el boton "Siguiente" estara deshabilitado"-->
+            <?php if($page == $pagenum): ?>
+                <li class="disable">&raquo;</li>
+            <?php else: ?>
+                <li><a href="?page=<?php echo $page +1 ?>">&raquo;</a></li>
+            <?php  endif; ?>
         </ul>
     </section>
 </div>
